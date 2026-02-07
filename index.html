@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Rose Day ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Background photo */
+body {
+  background: url('bg.jpg') no-repeat center center/cover;
+  position: relative;
+}
+
+/* Dark overlay for readability */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+}
+
+/* Center content */
+.content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+
+.card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 320px;
+}
+
+h1 {
+  margin: 0 0 10px;
+  font-size: 28px;
+  color: #ffdde6;
+}
+
+p {
+  font-size: 18px;
+  margin: 8px 0;
+}
+
+.love {
+  font-size: 22px;
+  color: #ff4d6d;
+  font-weight: bold;
+}
+
+/* Falling roses */
+.rose {
+  position: absolute;
+  width: 40px;
+  pointer-events: none;
+  animation: fall 4s linear forwards;
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(-60px) rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="overlay"></div>
+
+<div class="content">
+  <div class="card">
+    <h1>Happy Rose Day 💓</h1>
+    <p>This rose is for you 🌹</p>
+    <p class="love">I love you ❤️</p>
+    <p>Touch anywhere 🌹</p>
+  </div>
+</div>
+
+<script>
+document.addEventListener('click', function(e) {
+  for (let i = 0; i < 8; i++) {
+    createRose(e.clientX);
+  }
+});
+
+function createRose(xPos) {
+  const rose = document.createElement('img');
+  rose.src = 'rose.png';
+  rose.className = 'rose';
+  rose.style.left = (xPos + Math.random() * 100 - 50) + 'px';
+  rose.style.top = '-50px';
+  rose.style.width = (30 + Math.random() * 20) + 'px';
+  document.body.appendChild(rose);
+
+  setTimeout(() => {
+    rose.remove();
+  }, 4000);
+}
+</script>
+</body>
+</html>
